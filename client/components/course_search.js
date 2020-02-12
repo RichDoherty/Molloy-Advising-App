@@ -72,11 +72,15 @@ class CourseSearch extends Component {
           id="submitButton"
           variant="contained"
           color="primary"
-          onClick={() => this.setState({ isResultsVisible: true })}>
+
+          onClick={() => {
+            this.setState({ isResultsVisible: true });
+
+          }}>
           Search
           </Button>
       </div>
-      { this.state.isResultsVisible ? <CourseResults /> : null }
+      { this.state.isResultsVisible ? <CourseResults subject='' /> : null }
     </div>
     )
   }

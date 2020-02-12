@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import CourseResults from './course_results';
+import { Courses } from '../../imports/collections/courses';
 import '../CSS/main';
 import '../CSS/media';
 import '../CSS/login';
@@ -16,36 +19,16 @@ const Schedule = () => {
             </div>
             <div className="column" className="left">
                 <table id="schedule">
-                  <tr>
-                    <th>Course</th>
-                    <th>Title</th>
-                    <th>Start</th>
-                    <th>End</th>
-                  </tr>
-                  <tr>
-                    <td>CSC 3230 01</td>
-                    <td>Assembly Language</td>
-                    <td>3:25 PM</td>
-                    <td>4:50 PM</td>
-                  </tr>
-                  <tr>
-                    <td>CSC 4600 01</td>
-                    <td>Internship I</td>
-                    <td>5:00 PM</td>
-                    <td>6:25 PM</td>
-                  </tr>
-                  <tr>
-                    <td>CSC 4900 01</td>
-                    <td>Capstone Seminar</td>
-                    <td>12:15 PM</td>
-                    <td>1:40 PM</td>
-                  </tr>
-                  <tr>
-                    <td>MAT 2310 01</td>
-                    <td>Discrete Math CS</td>
-                    <td>12:15 PM</td>
-                    <td>1:40 PM</td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <td>Course Code</td>
+                      <td>Name</td>
+                      <td>Description</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
                 </table>
             </div>
         </div>
