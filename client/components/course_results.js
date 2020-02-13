@@ -25,21 +25,19 @@ class CourseResults extends Component {
   }
 */
   addCourseClick(id) {
-    console.log("clicked")
     localStorage.setItem('addedCoursesPermanent', this.state.addedCourses.concat(id))
     this.setState({ addedCourses: this.state.addedCourses.concat(id) })
   }
 
   removeCourseClick(id) {
-    console.log("clicked")
-    /** Thank you MarcoS. You're my hero!
-     * https://stackoverflow.com/questions/36326612/delete-item-from-state-array-in-react
-     */
-    const array = [this.state.addedCourses];
-    const indecks = this.state.addedCourses.indexOf(id)
-    if(indecks !== -1) {
-      this.state.addedCourses.splice(indecks, 1);
-      this.setState({ adddedCourses: array })
+    const index = this.state.addedCourses.indexOf(id)
+    const beginning = this.state.addedCourses.slice(0, index)
+    const end = this.state.addedCourses.slice(index+1)
+    console.log(beginning)
+    console.log(end)
+    console.log(beginning.concat(end) )
+    if(index !== -1) {
+      this.setState({ addedCourses: beginning.concat(end) })
     }
   }
 
@@ -58,14 +56,14 @@ class CourseResults extends Component {
             </thead>
             <tbody>
             {this.props.courses.map(x => {
-              if (this.state.addedCourses.find(function(y){
+              if (this.state.addedCourses.find(function(y) {
                return x._id == y }))
-              	return <CourseAdded course={x} removeCourseClick={this.removeCourseClick.bind(this, x._id)}/>
-              else return <CourseDetail key={x._id} course={x} addCourseClick={this.addCourseClick.bind(this, x._id)}/>
+              	return <CourseAdded key={x._id} course={x} removeCourseClick={this.removeCourseClick.bind(this, x._id)} />
+              else return <CourseDetail key={x._id} course={x} addCourseClick={this.addCourseClick.bind(this, x._id)} />
             })}
             </tbody>
         </table>
-        <Schedule array={this.state.addedCourses} />
+        <Schedule addedCoursesArray={this.state.addedCourses} courses={this.props.courses} removeCourseClick={this.removeCourseClick.bind(this, this.props.courses._id)} />
       </div>
     )
   }
