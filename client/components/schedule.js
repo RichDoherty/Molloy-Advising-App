@@ -37,7 +37,7 @@ class Schedule extends Component {
                     if (this.props.addedCoursesArray.find(function(y) {
                      return x._id == y }))
                      // put .bind() back in at some point.
-                      return <CourseAdded key={x._id} course={x} removeCourseClick={this.props.removeCourseClick}/>
+                      return <CourseAdded key={x._id} course={x} removeCourseClick={() => this.props.removeCourseClick(x._id)} />
                   })}
                   </tbody>
                 </table>

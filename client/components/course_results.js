@@ -63,7 +63,7 @@ class CourseResults extends Component {
             })}
             </tbody>
         </table>
-        <Schedule addedCoursesArray={this.state.addedCourses} courses={this.props.courses} removeCourseClick={this.removeCourseClick.bind(this, this.props.courses._id)} />
+        <Schedule addedCoursesArray={this.state.addedCourses} courses={this.props.courses} removeCourseClick={this.removeCourseClick.bind(this)} />
       </div>
     )
   }
