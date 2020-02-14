@@ -13,8 +13,11 @@ class CourseSearch extends Component {
     super(props)
 
     this.state = {
-      isResultsVisible: false
+      isResultsVisible: false,
+      selctedSubject: ''
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   renderSubjects() {
@@ -22,12 +25,17 @@ class CourseSearch extends Component {
       const { _id, subject } = subjectInList;
 
       return (
-        <option key={subjectInList._id} value={subject}>{subject}</option>
+        <option key={subjectInList._id} value={_id}>{subject}</option>
       )
     })
   }
 
+  handleChange(e) {
+    this.setState({ selctedSubject: e.target.value });
+  }
+
   render() {
+    console.log(this.state.selctedSubject)
     return(
       <div>
     <table id="courseSearchTable">
@@ -47,8 +55,8 @@ class CourseSearch extends Component {
               <tr>
                   <td className="cstTitle">Subject :</td>
                   <td>
-                      <select className="cstSelect">
-                        <option value="ALL">ALL</option>
+                      <select value={this.state.selctedSubject} onChange={this.handleChange} className="cstSelect">
+                        <option value=''>ALL</option>
                         {this.renderSubjects()}
                       </select>
                   </td>
@@ -72,15 +80,13 @@ class CourseSearch extends Component {
           id="submitButton"
           variant="contained"
           color="primary"
-
           onClick={() => {
             this.setState({ isResultsVisible: true });
-
           }}>
           Search
           </Button>
       </div>
-      { this.state.isResultsVisible ? <CourseResults subject='' /> : null }
+      { this.state.isResultsVisible ? <CourseResults selctedSubject={this.state.selctedSubject} subjects={this.props.subjects} /> : null }
     </div>
     )
   }

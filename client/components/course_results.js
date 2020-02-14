@@ -4,6 +4,7 @@ import CourseDetail from './course_detail';
 import CourseAdded from './course_added';
 import Schedule from '../components/schedule';
 import { Courses } from '../../imports/collections/courses';
+import { Subjects } from '../../imports/collections/subjects'
 import Button from '@material-ui/core/Button';
 
 const PER_PAGE = 20;
@@ -13,7 +14,6 @@ class CourseResults extends Component {
     super(props)
 
     this.state = {
-      subject: '',
       addedCourses: []
     }
   }
@@ -41,8 +41,20 @@ class CourseResults extends Component {
     }
   }
 
+  coursesToMap() {
+    if(this.props.selctedSubject === '') {
+      return this.props.courses
+    }
+    else {
+      return this.props.courses.filter(id => this.props.selctedSubject === id.subject_id)
+    }
+  }
+
   render() {
     console.log(this.state.addedCourses)
+    console.log(this.props.selctedSubject)
+
+
     return (
       <div>
         <table id="courseResultsTable">
@@ -55,7 +67,7 @@ class CourseResults extends Component {
               </tr>
             </thead>
             <tbody>
-            {this.props.courses.map(x => {
+            {this.coursesToMap().map(x => {
               if (this.state.addedCourses.find(function(y) {
                return x._id == y }))
               	return <CourseAdded key={x._id} course={x} removeCourseClick={this.removeCourseClick.bind(this, x._id)} />
