@@ -8,9 +8,9 @@ import '../CSS/logout';
 const Header = () => {
   return (
     <header>
-        <nav>
+        <div>
             <p>Molloy Advising</p>
-        </nav>
+        </div>
     </header>
   );
 };

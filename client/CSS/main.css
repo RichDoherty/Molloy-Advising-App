@@ -99,7 +99,17 @@ td, th {
     width:              39.5%;
 }
 
-.btn {
+.searchButtonDiv {
+  text-align:           right;
+}
+
+#submitButton {
+  margin-top:           1%;
+  margin-left:          1%;
+  margin-right:         10%;
+}
+
+.pageBtn {
     font-family:        hiragino sans, helvetica, swiss, arial, sans-serif;
     background-color:   #8f0000;
     border:             none;
@@ -110,7 +120,7 @@ td, th {
     float:              right;
 }
 
-.btn:hover {
+.pageBtn:hover {
     opacity:            75%;
 }
 
@@ -119,6 +129,10 @@ td, th {
     text-align:         center;
     font-family:        hiragino sans, helvetica, swiss, arial, sans-serif;
     font-size:          30px;
+}
+
+.footerDiv {
+  margin-top:           80px;
 }
 
 footer {

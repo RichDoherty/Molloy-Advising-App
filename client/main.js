@@ -11,6 +11,20 @@ import Footer from './components/footer';
 import Home from './components/main_home';
 import MainCourseSearch from './components/main_cs';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import red from '@material-ui/core/colors/red';
+
+/** The colors that will be used for material-ui components */
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: red[800],
+      light: red[300],
+      dark: red[900]
+    },
+  }
+});
+
 const App = () => {
     return (
         <Router>
@@ -40,5 +54,8 @@ const App = () => {
 
 Meteor.startup(() => {
   // React render call
-  ReactDOM.render(<App />, document.getElementById('render-target'));
+  ReactDOM.render(
+    <MuiThemeProvider theme={theme}>
+      <App />
+    </MuiThemeProvider>, document.getElementById('render-target'));
 });

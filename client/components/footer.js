@@ -6,9 +6,11 @@ import '../CSS/logout';
 
 const Footer = () => {
   return (
+  <div className="footerDiv">
     <footer>
     <p>Molloy</p>
-  </footer>
+    </footer>
+  </div>
   );
 };
 

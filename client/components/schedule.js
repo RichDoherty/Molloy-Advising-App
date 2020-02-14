@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import CourseDetail from './course_detail';
+import CourseResults from './course_results';
+import CourseAdded from './course_added';
+import { Courses } from '../../imports/collections/courses';
 import '../CSS/main';
 import '../CSS/media';
 import '../CSS/login';
 import '../CSS/logout';
 
-const Schedule = () => {
+class Schedule extends Component {
+
+  render() {
+    console.log(this.props.addedCoursesArray);
     return(
         <div>
             <div className="column" className="right">
@@ -16,39 +24,26 @@ const Schedule = () => {
             </div>
             <div className="column" className="left">
                 <table id="schedule">
-                  <tr>
-                    <th>Course</th>
-                    <th>Title</th>
-                    <th>Start</th>
-                    <th>End</th>
-                  </tr>
-                  <tr>
-                    <td>CSC 3230 01</td>
-                    <td>Assembly Language</td>
-                    <td>3:25 PM</td>
-                    <td>4:50 PM</td>
-                  </tr>
-                  <tr>
-                    <td>CSC 4600 01</td>
-                    <td>Internship I</td>
-                    <td>5:00 PM</td>
-                    <td>6:25 PM</td>
-                  </tr>
-                  <tr>
-                    <td>CSC 4900 01</td>
-                    <td>Capstone Seminar</td>
-                    <td>12:15 PM</td>
-                    <td>1:40 PM</td>
-                  </tr>
-                  <tr>
-                    <td>MAT 2310 01</td>
-                    <td>Discrete Math CS</td>
-                    <td>12:15 PM</td>
-                    <td>1:40 PM</td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <td>Course Code</td>
+                      <td>Name</td>
+                      <td>Description</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {this.props.courses.map(x => {
+                    if (this.props.addedCoursesArray.find(function(y) {
+                     return x._id == y }))
+                     // put .bind() back in at some point.
+                      return <CourseAdded key={x._id} course={x} removeCourseClick={() => this.props.removeCourseClick(x._id)} />
+                  })}
+                  </tbody>
                 </table>
             </div>
         </div>
     )
+  }
 }
 export default Schedule;
