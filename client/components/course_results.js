@@ -83,7 +83,7 @@ class CourseResults extends Component {
 
 export default withTracker(() => {
   // set up subscription
-  Meteor.subscribe('molloyAdvising.courses');
+  Meteor.subscribe('courses');
 
   // return an object. Whatever we return will be sent to CourseResults
   // as props
