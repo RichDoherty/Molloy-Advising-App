@@ -11,7 +11,7 @@ class CourseAdded extends Component {
           <td><label className="subjectId">{this.props.course.subject_id}{this.props.course.course_id}</label></td>
           <td><label className="courseName">{this.props.course.course_Name}</label></td>
           <td><label className="courseDescription">{this.props.course.course_Description}</label></td>
-          <td className="addButton"><Button variant="outlined" color="primary" onClick={this.props.removeCourseClick}>:)</Button></td>
+          <td className="addButton"><Button variant="outlined" color="primary" onClick={this.props.removeCourseClick}>Drop</Button></td>
         </tr>
     );
   };

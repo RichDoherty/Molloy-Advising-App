@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import CourseSearch from '../components/course_search';
-import CourseResults from '../components/course_results';
-import Schedule from '../components/schedule';
+import Header from './header';
+import Footer from './footer';
+import CourseSearch from './course_search';
+import CourseResults from './course_results';
+import Schedule from './schedule';
+import CourseSearchResultsScheduleParent from './course_search_results_schedule_parent';
 
 const MainCourseSearch = () => {
   return (
     <div>
       <Header />
-      <CourseSearch />
-
+      <CourseSearchResultsScheduleParent />
       <Footer />
     </div>
   );
