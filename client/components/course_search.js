@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Button from '@material-ui/core/Button';
 import CourseResults from './course_results';
+import CourseSearchResultsScheduleParent from './course_search_results_schedule_parent';
 import { Subjects } from '../../imports/collections/subjects'
 import '../CSS/main';
 import '../CSS/media';
@@ -86,7 +87,16 @@ class CourseSearch extends Component {
           Search
           </Button>
       </div>
-      { this.state.isResultsVisible ? <CourseResults selctedSubject={this.state.selctedSubject} subjects={this.props.subjects} /> : null }
+      { this.state.isResultsVisible ? <CourseResults
+                                        // properties being passed down
+                                        addedCourses={this.props.addedCourses}
+                                        selctedSubject={this.state.selctedSubject}
+                                        subjects={this.props.subjects}
+                                        courses={this.props.courses}
+                                        addCourseClick={this.props.addCourseClick}
+                                        removeCourseClick={this.props.removeCourseClick}
+                                        />
+                                    : null }
     </div>
     )
   }
