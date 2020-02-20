@@ -18,12 +18,14 @@ class CourseSearchResultsScheduleParent extends Component {
 
   componentDidMount() {
     const getAddedCourses = localStorage.getItem('addedCoursesPermanent')
-    this.setState({ addedCourses: getAddedCourses.split(",") })
+    if(getAddedCourses !== null) {
+    return this.setState({ addedCourses: getAddedCourses.split(",") })
+    }
     console.log(getAddedCourses)
   }
 
   addCourseClick(id) {
-    localStorage.setItem('addedCoursesPermanent', this.state.addedCourses.concat(id))
+    localStorage.setItem('addedCoursesPermanent', this.state.addedCourses.concat(id).toString())
     this.setState({ addedCourses: this.state.addedCourses.concat(id) })
   }
 
