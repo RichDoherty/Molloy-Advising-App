@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Header from './header';
 import Footer from './footer';
@@ -10,14 +10,23 @@ import CourseAdded from './course_added';
 import { Courses } from '../../imports/collections/courses';
 import CourseSearchResultsScheduleParent from './course_search_results_schedule_parent';
 
-const Home = () => {
-  return (
-    <div>
-      <Header />
-      <CourseSearchResultsScheduleParent />
-      <Footer />
-    </div>
-  );
+class Home extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      searchVisible: false
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Header />
+        <CourseSearchResultsScheduleParent searchVisible={this.state.searchVisible} />
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default Home;
