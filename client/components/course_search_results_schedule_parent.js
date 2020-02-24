@@ -33,7 +33,7 @@ class CourseSearchResultsScheduleParent extends Component {
   }
 
   removeCourseClick(id) {
-    const index = this.state.addedCourses.indexOf(id)
+    const index = this.state.addedCourses.indexOf(id.valueOf())
     const beginning = this.state.addedCourses.slice(0, index)
     const end = this.state.addedCourses.slice(index+1)
     localStorage.setItem('addedCoursesPermanent', beginning.concat(end))
