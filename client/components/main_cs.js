@@ -18,7 +18,6 @@ class MainCourseSearch extends Component {
   render() {
     return (
       <div>
-        <Header />
         <CourseSearchResultsScheduleParent searchVisible={this.state.searchVisible} />
         <Footer />
       </div>
