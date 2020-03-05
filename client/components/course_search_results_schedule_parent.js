@@ -18,17 +18,22 @@ class CourseSearchResultsScheduleParent extends Component {
 
   componentDidMount() {
     const getAddedCourses = localStorage.getItem('addedCoursesPermanent')
-    this.setState({ addedCourses: getAddedCourses.split(",") })
+    if(getAddedCourses !== null) {
+    return this.setState({ addedCourses: getAddedCourses.split(",") })
+    }
     console.log(getAddedCourses)
   }
 
   addCourseClick(id) {
-    localStorage.setItem('addedCoursesPermanent', this.state.addedCourses.concat(id))
-    this.setState({ addedCourses: this.state.addedCourses.concat(id) })
+    // .valueOf() is used to get the id from MongoDB's ObjectId(...) format
+    // https://docs.mongodb.com/manual/reference/method/ObjectId.valueOf/
+    localStorage.setItem('addedCoursesPermanent',
+      this.state.addedCourses.concat(id.valueOf()))
+    this.setState({ addedCourses: this.state.addedCourses.concat(id.valueOf()) })
   }
 
   removeCourseClick(id) {
-    const index = this.state.addedCourses.indexOf(id)
+    const index = this.state.addedCourses.indexOf(id.valueOf())
     const beginning = this.state.addedCourses.slice(0, index)
     const end = this.state.addedCourses.slice(index+1)
     localStorage.setItem('addedCoursesPermanent', beginning.concat(end))
@@ -43,12 +48,16 @@ class CourseSearchResultsScheduleParent extends Component {
   render() {
     return (
       <div>
+      {/* this.props.searchVisible used to make CourseSearch visible on the
+      Course Search page and invisible on the Home page */}
+      { this.props.searchVisible ?
         <CourseSearch
           addedCourses={this.state.addedCourses}
           courses={this.props.courses}
           addCourseClick={this.addCourseClick.bind(this)}
           removeCourseClick={this.removeCourseClick.bind(this)}
           />
+        : null }
         <Schedule
           addedCourses={this.state.addedCourses}
           courses={this.props.courses}

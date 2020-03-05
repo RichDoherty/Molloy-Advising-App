@@ -29,7 +29,9 @@ const App = () => {
     return (
         <Router>
             <div>
+              <header>
                 <nav>
+                  <p>Molloy Advising</p>
                     <ul>
                         <li>
                             <Link to="/">Home</Link>
@@ -39,6 +41,7 @@ const App = () => {
                         </li>
                     </ul>
                 </nav>
+              </header>
                 <Switch>
                     <Route exact path="/">
                         <Home />
