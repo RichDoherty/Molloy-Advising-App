@@ -15,10 +15,14 @@ class CourseSearch extends Component {
 
     this.state = {
       isResultsVisible: false,
-      selctedSubject: ''
+      selctedSubject: '',
+      courseCodeInput: '',
+      titleInput: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDropDown = this.handleDropDown.bind(this);
+    this.handleCodeInput = this.handleCodeInput.bind(this);
+    this.handleTitleInput = this.handleTitleInput.bind(this);
   }
 
   renderSubjects() {
@@ -31,8 +35,16 @@ class CourseSearch extends Component {
     })
   }
 
-  handleChange(e) {
+  handleDropDown(e) {
     this.setState({ selctedSubject: e.target.value });
+  }
+
+  handleCodeInput(e) {
+    this.setState({ courseCodeInput: e.target.value });
+  }
+
+  handleTitleInput(e) {
+    this.setState({ titleInput: e.target.value });
   }
 
   render() {
@@ -56,7 +68,7 @@ class CourseSearch extends Component {
               <tr>
                   <td className="cstTitle">Subject :</td>
                   <td>
-                      <select value={this.state.selctedSubject} onChange={this.handleChange} className="cstSelect">
+                      <select value={this.state.selctedSubject} onChange={this.handleDropDown} className="cstSelect">
                         <option value=''>ALL</option>
                         {this.renderSubjects()}
                       </select>
@@ -65,13 +77,21 @@ class CourseSearch extends Component {
               <tr>
                   <td className="cstTitle">Title :</td>
                   <td>
-                      <input type="text" className="cstInput" />
+                      <input type="text"
+                             value={this.state.titleInput}
+                             onChange={this.handleTitleInput}
+                             className="cstInput"
+                             />
                   </td>
               </tr>
               <tr>
                   <td className="cstTitle">Course Code :</td>
                   <td>
-                      <input type="text" className="cstInput" />
+                      <input type="text"
+                             value={this.state.courseCodeInput}
+                             onChange={this.handleCodeInput}
+                             className="cstInput"
+                             />
                   </td>
               </tr>
           </tbody>
@@ -83,6 +103,7 @@ class CourseSearch extends Component {
           color="primary"
           onClick={() => {
             this.setState({ isResultsVisible: true });
+
           }}>
           Search
           </Button>
@@ -91,6 +112,8 @@ class CourseSearch extends Component {
                                         // properties being passed down
                                         addedCourses={this.props.addedCourses}
                                         selctedSubject={this.state.selctedSubject}
+                                        courseCodeInput={this.state.courseCodeInput}
+                                        titleInput={this.state.titleInput}
                                         subjects={this.props.subjects}
                                         courses={this.props.courses}
                                         addCourseClick={this.props.addCourseClick}

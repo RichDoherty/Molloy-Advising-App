@@ -14,17 +14,21 @@ class CourseResults extends Component {
   }
 
   coursesToMap() {
-    if(this.props.selctedSubject === '') {
-      return this.props.courses
+    if(this.props.selctedSubject === '' && this.props.titleInput === '' && this.props.courseCodeInput === '') {
+      return this.props.courses;
     }
     else {
-      return this.props.courses.filter(id => this.props.selctedSubject === id.subject_id)
+      return this.props.courses.filter(course =>
+        (this.props.selctedSubject === course.subject_id || this.props.selctedSubject === '') &&
+        (course.course_Name.toString().toLowerCase().split(' ').join('')).includes(this.props.titleInput.toString().toLowerCase().split(' ').join('')) &&
+        (course.subject_id + course.course_id).includes(this.props.courseCodeInput.toString().toUpperCase().split(' ').join('')));
     }
   }
 
   render() {
     console.log(this.props.addedCourses)
     console.log(this.props.selctedSubject)
+    console.log(this.props.titleInput.toLowerCase().split(' ').join(''))
 
     return (
       <div>
