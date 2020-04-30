@@ -1,0 +1,9 @@
+header nav p{
+	padding-left: 17%;
+	font-size: 170%;
+}
+
+header li  {
+	position: relative;
+	right: 10%;
+}
